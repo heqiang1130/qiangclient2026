@@ -279,9 +279,11 @@ public class FullscreenActivity extends AppCompatActivity {
 //http://51.onelink.ynwlzc.net/o2o/index.php/startlink/1
         String HOME_pos工作台20240802 = "http://51.onelink.ynwlzc.net/o2o/index.php/startlink/1";
 
+        String HOME_pos广发美发=  "http://shop.gfrj.top/mf_app/cohpp.html";
+
       // cwpd_Web.loadUrl(HOME_酒店押金);
        // cwpd_Web.loadUrl(HOME_万能押金单20240709);
-        cwpd_Web.loadUrl(HOME_pos工作台20240802);
+        cwpd_Web.loadUrl(HOME_pos广发美发);
       //  cwpd_Web.loadUrl(HOME_报销);
         */
 
