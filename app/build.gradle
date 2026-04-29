@@ -15,11 +15,31 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+/*
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    */
+
+      // 加这个
+    signingConfigs {
+        release {
+            def props = new Properties()
+            props.load(rootProject.file("local.properties").newDataInputStream())
+            storeFile file(props.getProperty("KEYSTORE_FILE"))
+            storePassword props.getProperty("KEYSTORE_PASSWORD")
+            keyAlias props.getProperty("KEY_ALIAS")
+            keyPassword props.getProperty("KEY_PASSWORD")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release // 启用签名
+            minifyEnabled false
         }
     }
     compileOptions {
@@ -33,7 +53,7 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
-    implementation fileTree(dir: 'C:\\CyberWin\\androidwork\\CyberWinOSAnd_ScreenDisplay\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
+ //   implementation fileTree(dir: 'C:\\CyberWin\\androidwork\\CyberWinOSAnd_ScreenDisplay\\app\\libs', include: ['*.aar', '*.jar'], exclude: [])
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -42,8 +62,11 @@ dependencies {
     //jSerialComm-1.3.0.jar
    // implementation files('C:\\CyberWin\\androidwork\\CyberWinOSAnd_ScreenDisplay\\app\\libs\\jSerialComm-1.3.0.jar');
     //implementation files('C:\\CyberWin\\androidwork\\CyberWinOSAnd_PCScreenManager\\app\\libs\\com.google.zxing_core-3.3.3.jar')
-    implementation files('C:\\CyberWin\\android_lib\\cyber_libs_alipay\\fastjson-1.1.45.jar')
+ //   implementation files('C:\\CyberWin\\android_lib\\cyber_libs_alipay\\fastjson-1.1.45.jar')
 //serialport-2.1.aar
    // implementation files('C:\\CyberWin\\android_lib\\cyber_libs_alipay\\serialport-2.1.aar')
+
+      // 自动加载 libs 文件夹下所有 jar 和 aar
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
 }
